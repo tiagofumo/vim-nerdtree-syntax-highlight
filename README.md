@@ -5,6 +5,7 @@ File syntax will follow this pattern:
 
 * labels: nerdtreeFileExtensionLabel_#{extension}
 * icons(needs [vim-devicons](https://github.com/ryanoasis/vim-devicons)): nerdtreeFileExtensionLabel_#{extension}
+
 ### Screenshots:
 ![](/screenshots/allfiles.png "All files generated with the generateFiles<span></span>.sh script")
 ![](/screenshots/railsapp.png "Screenshot of files in a rails app with my current icons setup")
