@@ -26,6 +26,6 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '00FF00' "sets the color of .css files to green
 ```
-Obs: If you have [vim-devicons](https://github.com/ryanoasis/vim-devicons) and you want to customize Icons you can customize your icons for each file type.
+Obs: If you have [vim-devicons](https://github.com/ryanoasis/vim-devicons) and you want to customize icons you can customize your icons for each file type.
 ### generateFiles script
 There is a script in 'fileColorTest' folder called generateFiles.sh that will generate all the file extension supported by this plugin for a quick review. These files will be generated on a 'files' subfolder.
