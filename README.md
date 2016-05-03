@@ -1,5 +1,10 @@
 # vim-nerdtree-syntax-highlight
-This adds syntax for nerdtree on most common file extensions. This is intended to be used with [vim-devicons](https://github.com/ryanoasis/vim-devicons) to add color to icons or entire labels, but will work without it.
+This adds syntax for nerdtree on most common file extensions. This is intended to be used with [vim-devicons](https://github.com/ryanoasis/vim-devicons) to add color to icons or entire labels, but will work without it. It is possible to disable highlight, but the syntax will still be available if you want to make something specific with it. The file icons are linked to their labels which are linked to NERDTreeFile, so it will not break anything.
+
+File syntax will follow this pattern:
+
+* labels: nerdtreeFileExtensionLabel_#{extension}
+* icons(needs [vim-devicons](https://github.com/ryanoasis/vim-devicons)): nerdtreeFileExtensionLabel_#{extension}
 ### Screenshots:
 ![](/screenshots/allfiles.png "All files generated with the generateFiles<span></span>.sh script")
 ![](/screenshots/railsapp.png "Screenshot of files in a rails app with my current icons setup")
@@ -26,6 +31,13 @@ let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '00FF00' "sets the color of .css files to green
 ```
+
+* Disable Highlight for specific file extension
+```vim
+let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
+```
+
 Obs: If you have [vim-devicons](https://github.com/ryanoasis/vim-devicons) and you want to customize icons you can customize your icons for each file type.
 ### generateFiles script
 There is a script in 'fileColorTest' folder called generateFiles.sh that will generate all the file extension supported by this plugin for a quick review. These files will be generated on a 'files' subfolder.
