@@ -1,3 +1,5 @@
+"I borrowed this crazy code from vim-tomorrow-theme colorschemes
+
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Returns an approximate grey index for the given grey level
 	fun! s:grey_number(x)
@@ -329,15 +331,16 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
     exec 'syn match nerdtreeFileExtensionIcon_'.key.' #'.icon.'# containedin=nerdtreeFileExtensionLabel_'.key
     exec 'hi def link nerdtreeFileExtensionIcon_'.key.' nerdtreeFileExtensionLabel_'.key
+  endif
 
-    if !exists('g:NERDTreeDisableFileExtensionHighlight') && val != ''
-      "exec 'highlight nerdtreeFileExtensionIcon_'.key.' ctermbg=none ctermfg=#'.val.' guifg=#'.val
-	  if exists('g:NERDTreeFileExtensionHighlightFullName')
-	    call s:X('nerdtreeFileExtensionLabel_'.key, val, '', '')
-      else
-	    call s:X('nerdtreeFileExtensionIcon_'.key, val, '', '')
-	  endif
+  if !exists('g:NERDTreeDisableFileExtensionHighlight') && val != ''
+    "exec 'highlight nerdtreeFileExtensionIcon_'.key.' ctermbg=none ctermfg=#'.val.' guifg=#'.val
+    if exists('g:NERDTreeFileExtensionHighlightFullName')
+      call s:X('nerdtreeFileExtensionLabel_'.key, val, '', '')
+    elseif exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
+      call s:X('nerdtreeFileExtensionIcon_'.key, val, '', '')
     endif
   endif
+
 endfor
 
