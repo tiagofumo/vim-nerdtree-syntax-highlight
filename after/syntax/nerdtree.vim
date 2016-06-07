@@ -222,6 +222,7 @@ let s:yellow = "F09F17"
 let s:orange = "D4843E"
 let s:darkOrange = "F16529"
 let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
 let s:green = "8FAA54"
 let s:lightGreen = "31B53E"
 let s:white = "FFFFFF"
@@ -311,6 +312,37 @@ let s:file_extension_colors = {
 	\	'jl'       : s:purple
 \}
 
+let s:file_node_exact_matches = {
+	\	'gruntfile.coffee'                 : s:yellow,
+	\	'gruntfile.js'                     : s:yellow,
+	\	'gruntfile.ls'                     : s:yellow,
+	\	'gulpfile.coffee'                  : s:pink,
+	\	'gulpfile.js'                      : s:pink,
+	\	'gulpfile.ls'                      : s:pink,
+	\	'dropbox'                          : s:blue,
+	\	'.ds_store'                        : s:white,
+	\	'.gitconfig'                       : s:white,
+	\	'.gitignore'                       : s:white,
+	\	'.bashrc'                          : s:white,
+	\	'.bashprofile'                     : s:white,
+	\	'favicon.ico'                      : s:yellow,
+	\	'license'                          : s:white,
+	\	'node_modules'                     : s:green,
+	\	'react.jsx'                        : s:blue,
+	\	'procfile'                         : s:purple,
+\}
+
+" let s:file_node_pattern_matches = {
+" 	\ '.*jquery.*\.js$'       : s:blue,
+" 	\ '.*angular.*\.js$'      : s:red,
+" 	\ '.*backbone.*\.js$'     : s:darkBlue,
+" 	\ '.*require.*\.js$'      : s:blue,
+" 	\ '.*materialize.*\.js$'  : s:salmon,
+" 	\ '.*materialize.*\.css$' : s:salmon,
+" 	\ '.*mootools.*\.js$'     : s:white
+" \}
+
+" Extension colors
 
 if !exists('g:NERDTreeExtensionHighlightColor')
   let g:NERDTreeExtensionHighlightColor = {}
@@ -321,7 +353,6 @@ for [key, val] in items(s:file_extension_colors)
     let g:NERDTreeExtensionHighlightColor[key] = val
   endif
 endfor
-
 
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   exec 'syn match nerdtreeFileExtensionLabel_'.key.' ".*\.'.key.'$" containedin=NERDTreeFile'
@@ -341,6 +372,71 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
       call s:X('nerdtreeFileExtensionIcon_'.key, val, '', '')
     endif
   endif
-
 endfor
+
+"Exact Matches
+
+if !exists('g:NERDTreeExactMatchHighlightColor')
+  let g:NERDTreeExactMatchHighlightColor = {}
+endif
+
+for [key, val] in items(s:file_node_exact_matches)
+  if !has_key(g:NERDTreeExactMatchHighlightColor, key)
+    let g:NERDTreeExactMatchHighlightColor[key] = val
+  endif
+endfor
+
+for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
+  exec 'syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'$" containedin=NERDTreeFile'
+  exec 'hi def link nerdtreeExactMatchLabel_'.key.' NERDTreeFile'
+  " exec 'syn match nerdtreeExactMatchFolderLabel_'.key.' \"[\s\|\]]'.key.'\ze\/" containedin=NERDTreeDir'
+  " exec 'hi def link nerdtreeExactMatchFolderLabel_'.key.' NERDTreeDir'
+
+  if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
+    let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
+    exec 'syn match nerdtreeFileExactIcon_'.key.' #'.icon.'# containedin=nerdtreeExactMatchLabel_'.key
+    exec 'hi def link nerdtreeFileExactIcon_'.key.' nerdtreeExactMatchLabel_'.key
+  endif
+
+  if !exists('g:NERDTreeDisableExactMatchHighlight') && val != ''
+    "exec 'highlight nerdtreeFileExtensionIcon_'.key.' ctermbg=none ctermfg=#'.val.' guifg=#'.val
+    if exists('g:NERDTreeExactMatchHighlightFullName')
+      call s:X('nerdtreeExactMatchLabel_'.key, val, '', '')
+    elseif exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
+      call s:X('nerdtreeFileExactIcon_'.key, val, '', '')
+    endif
+  endif
+endfor
+
+"Pattern Matches
+
+"if !exists('g:NERDTreePatternMatchHighlightColor')
+"  let g:NERDTreePatternMatchHighlightColor = {}
+"endif
+"
+"for [key, val] in items(s:file_node_pattern_matches)
+"  if !has_key(g:NERDTreePatternMatchHighlightColor, key)
+"    let g:NERDTreePatternMatchHighlightColor[key] = val
+"  endif
+"endfor
+"
+"for [key, val] in items(g:NERDTreeExtensionHighlightColor)
+"  exec 'syn match nerdtreeFileExtensionLabel_'.key.' \".*\.'.key.'$" containedin=NERDTreeFile'
+"  exec 'hi def link nerdtreeFileExtensionLabel_'.key.' NERDTreeFile'
+"
+"  if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
+"    let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
+"    exec 'syn match nerdtreeFileExtensionIcon_'.key.' #'.icon.'# containedin=nerdtreeFileExtensionLabel_'.key
+"    exec 'hi def link nerdtreeFileExtensionIcon_'.key.' nerdtreeFileExtensionLabel_'.key
+"  endif
+"
+"  if !exists('g:NERDTreeDisableFileExtensionHighlight') && val != ''
+"    "exec 'highlight nerdtreeFileExtensionIcon_'.key.' ctermbg=none ctermfg=#'.val.' guifg=#'.val
+"    if exists('g:NERDTreeFileExtensionHighlightFullName')
+"      call s:X('nerdtreeFileExtensionLabel_'.key, val, '', '')
+"    elseif exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
+"      call s:X('nerdtreeFileExtensionIcon_'.key, val, '', '')
+"    endif
+"  endif
+"endfor
 
