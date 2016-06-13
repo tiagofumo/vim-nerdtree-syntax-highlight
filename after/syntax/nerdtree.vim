@@ -355,12 +355,12 @@ for [key, val] in items(s:file_extension_colors)
 endfor
 
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
-  exec 'syn match nerdtreeFileExtensionLabel_'.key.' ".*\.'.key.'$" containedin=NERDTreeFile'
+  exec 'silent syn match nerdtreeFileExtensionLabel_'.key.' ".*\.'.key.'$" containedin=NERDTreeFile'
   exec 'hi def link nerdtreeFileExtensionLabel_'.key.' NERDTreeFile'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
-    exec 'syn match nerdtreeFileExtensionIcon_'.key.' #'.icon.'# containedin=nerdtreeFileExtensionLabel_'.key
+    exec 'silent syn match nerdtreeFileExtensionIcon_'.key.' #'.icon.'# containedin=nerdtreeFileExtensionLabel_'.key
     exec 'hi def link nerdtreeFileExtensionIcon_'.key.' nerdtreeFileExtensionLabel_'.key
   endif
 
@@ -387,14 +387,14 @@ for [key, val] in items(s:file_node_exact_matches)
 endfor
 
 for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
-  exec 'syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'$" containedin=NERDTreeFile'
+  exec 'silent syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'$" containedin=NERDTreeFile'
   exec 'hi def link nerdtreeExactMatchLabel_'.key.' NERDTreeFile'
   " exec 'syn match nerdtreeExactMatchFolderLabel_'.key.' \"[\s\|\]]'.key.'\ze\/" containedin=NERDTreeDir'
   " exec 'hi def link nerdtreeExactMatchFolderLabel_'.key.' NERDTreeDir'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
-    exec 'syn match nerdtreeFileExactIcon_'.key.' #'.icon.'# containedin=nerdtreeExactMatchLabel_'.key
+    exec 'silent syn match nerdtreeFileExactIcon_'.key.' #'.icon.'# containedin=nerdtreeExactMatchLabel_'.key
     exec 'hi def link nerdtreeFileExactIcon_'.key.' nerdtreeExactMatchLabel_'.key
   endif
 
