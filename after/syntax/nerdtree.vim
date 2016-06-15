@@ -356,6 +356,7 @@ endfor
 
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   exec 'silent syn match nerdtreeFileExtensionLabel_'.key.' ".*\.'.key.'$" containedin=NERDTreeFile'
+  exec 'silent syn match nerdtreeFileExtensionLabel_'.key.' ".*\.'.key.'\*$" containedin=NERDTreeExecFile'
   exec 'hi def link nerdtreeFileExtensionLabel_'.key.' NERDTreeFile'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
@@ -388,6 +389,7 @@ endfor
 
 for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   exec 'silent syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'$" containedin=NERDTreeFile'
+  exec 'silent syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'\*$" containedin=NERDTreeExecFile'
   exec 'hi def link nerdtreeExactMatchLabel_'.key.' NERDTreeFile'
   " exec 'syn match nerdtreeExactMatchFolderLabel_'.key.' \"[\s\|\]]'.key.'\ze\/" containedin=NERDTreeDir'
   " exec 'hi def link nerdtreeExactMatchFolderLabel_'.key.' NERDTreeDir'
