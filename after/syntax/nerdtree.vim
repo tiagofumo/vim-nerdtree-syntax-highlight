@@ -387,24 +387,34 @@ for [key, val] in items(s:file_node_exact_matches)
 endfor
 
 for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
-  exec 'silent syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'$" containedin=NERDTreeFile'
-  exec 'silent syn match nerdtreeExactMatchLabel_'.key.' "^.*'.key.'\*$" containedin=NERDTreeExecFile'
-  exec 'hi def link nerdtreeExactMatchLabel_'.key.' NERDTreeFile'
-  " exec 'syn match nerdtreeExactMatchFolderLabel_'.key.' \"[\s\|\]]'.key.'\ze\/" containedin=NERDTreeDir'
-  " exec 'hi def link nerdtreeExactMatchFolderLabel_'.key.' NERDTreeDir'
-
+  let label_identifier = 'nerdtreeExactMatchLabel_'.key
+  let icon_identifier = 'nerdtreeFileExactMatchIcon_'.key
+  let folder_identifier = 'nerdtreeExactMatchFolder_'.key
+  let folder_icon_identifier = 'nerdtreeExactMatchFolderIcon_'.key
+  exec 'silent syn match '.label_identifier.' "'.key.'$" containedin=NERDTreeFile'
+  exec 'silent syn match '.label_identifier.' "'.key.'\*$" containedin=NERDTreeExecFile'
+  exec 'hi def link '.label_identifier.' NERDTreeFile'
+  exec 'silent syn match '.folder_identifier.' "\v<'.key.'\ze\/" containedin=NERDTreeDir'
+  exec 'hi def link '.folder_identifier.' NERDTreeDir'
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
-    exec 'silent syn match nerdtreeFileExactIcon_'.key.' #'.icon.'# containedin=nerdtreeExactMatchLabel_'.key
-    exec 'hi def link nerdtreeFileExactIcon_'.key.' nerdtreeExactMatchLabel_'.key
+    exec 'silent syn match '.icon_identifier.' "['.icon.']\ze.*'.key.'$" containedin=NERDTreeFile'
+    exec 'silent syn match '.icon_identifier.' "['.icon.']\ze.*'.key.'\*$" containedin=NERDTreeExecFile'
+    exec 'hi def link '.icon_identifier.' '.label_identifier
+    exec 'silent syn match '.folder_icon_identifier.' "['.icon.']\ze.*'.key.'\/" containedin=NERDTreeDir'
+    exec 'hi def link '.folder_icon_identifier.' '.folder_identifier
   endif
 
   if !exists('g:NERDTreeDisableExactMatchHighlight') && val != ''
-    "exec 'highlight nerdtreeFileExtensionIcon_'.key.' ctermbg=none ctermfg=#'.val.' guifg=#'.val
+    call s:X(icon_identifier, val, '', '')
     if exists('g:NERDTreeExactMatchHighlightFullName')
-      call s:X('nerdtreeExactMatchLabel_'.key, val, '', '')
-    elseif exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
-      call s:X('nerdtreeFileExactIcon_'.key, val, '', '')
+      call s:X(label_identifier, val, '', '')
+    endif
+    if exists('g:NERDTreeHighlightFolders')
+      call s:X(folder_icon_identifier, val, '', '')
+      if exists('g:NERDTreeExactMatchHighlightFullName')
+        call s:X(folder_identifier, val, '', '')
+      endif
     endif
   endif
 endfor
