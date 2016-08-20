@@ -106,6 +106,19 @@ exact_matches=(
   \ 'procfile'
 )
 
+test_files=(
+  \ '112.123.111.js'
+  \ '.112.123.111.js'
+  \ 'file123.js123.js'
+  \ 'file.js'
+  \ '112.js'
+  \ '_file.js'
+  \ 'hyphen-file.js'
+  \ 'hyphen-file.hyphen-file.js'
+  \ '-.hyphen-file.js'
+  \ '**%%44#@@!!@##$!!#!.error.js'
+)
+
 if [ ! -d "./files/" ]; then
   mkdir './files'
 fi
@@ -133,4 +146,13 @@ do
   if [ ! -d "./files/exact_matches/$exact_match_folder/" ]; then
     mkdir "./files/exact_matches/$exact_match_folder"
   fi
+done
+
+if [ ! -d "./files/test_files/" ]; then
+  mkdir './files/test_files'
+fi
+
+for test_file in ${test_files[@]}
+do
+  touch "files/test_files/$test_file"
 done
