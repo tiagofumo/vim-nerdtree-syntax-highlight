@@ -355,9 +355,11 @@ endfor
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   let label_identifier = 'nerdtreeFileExtensionLabel_'.key
   let icon_identifier = 'nerdtreeFileExtensionIcon_'.key
-  exec 'silent syn match '.label_identifier.' "\(\s\|\]\)\S\+\.'.key.'$" containedin=NERDTreeFile'
-  exec 'silent syn match '.label_identifier.' "\(\s\|\]\)\S\+\.'.key.'$" containedin=NERDTreeExecFile'
-  exec 'silent syn match '.label_identifier.' "\(\s\|\]\)\S\+\.'.key.'\*$" containedin=NERDTreeExecFile'
+  let regexp = '\v(\S&[^]])*\.'.substitute(key, '\W', '\\\0', 'g')
+
+  exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeFile'
+  exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeExecFile'
+  exec 'silent syn match '.label_identifier.' "'.regexp.'\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
