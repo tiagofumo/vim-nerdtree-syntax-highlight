@@ -355,7 +355,8 @@ endfor
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   let label_identifier = 'nerdtreeFileExtensionLabel_'.key
   let icon_identifier = 'nerdtreeFileExtensionIcon_'.key
-  let regexp = '\v(\S&[^]])*\.'.substitute(key, '\W', '\\\0', 'g')
+  "let regexp = '\v(\S&[^]])*\.'.substitute(key, '\W', '\\\0', 'g')
+  let regexp = '\v[a-zA-Z0-9\.+-\#\*\%\!$_]+\.'.substitute(key, '\W', '\\\0', 'g')
 
   exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeFile'
   exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeExecFile'
