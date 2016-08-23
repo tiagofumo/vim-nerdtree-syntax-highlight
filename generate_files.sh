@@ -119,6 +119,16 @@ test_files=(
   \ '**%%44#@@!!@##$!!#!.error.js'
 )
 
+pattern_matches=(
+  \ 'test.angular.js'
+  \ 'test.backbone.js'
+  \ 'test.jquery.js'
+  \ 'test.materialize.css'
+  \ 'test.materialize.js'
+  \ 'test.mootools.js'
+  \ 'test.require.js'
+)
+
 if [ ! -d "./files/" ]; then
   mkdir './files'
 fi
@@ -155,4 +165,13 @@ fi
 for test_file in ${test_files[@]}
 do
   touch "files/test_files/$test_file"
+done
+
+if [ ! -d "./files/pattern_matches/" ]; then
+  mkdir './files/pattern_matches'
+fi
+
+for pattern_match in ${pattern_matches[@]}
+do
+  touch "files/pattern_matches/$pattern_match"
 done
