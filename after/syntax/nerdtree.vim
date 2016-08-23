@@ -431,33 +431,39 @@ endfor
 
 "Pattern Matches
 
-"if !exists('g:NERDTreePatternMatchHighlightColor')
-"  let g:NERDTreePatternMatchHighlightColor = {}
-"endif
-"
-"for [key, val] in items(s:file_node_pattern_matches)
-"  if !has_key(g:NERDTreePatternMatchHighlightColor, key)
-"    let g:NERDTreePatternMatchHighlightColor[key] = val
-"  endif
-"endfor
-"
-"for [key, val] in items(g:NERDTreeExtensionHighlightColor)
-"  exec 'syn match nerdtreeFileExtensionLabel_'.key.' \".*\.'.key.'$" containedin=NERDTreeFile'
-"  exec 'hi def link nerdtreeFileExtensionLabel_'.key.' NERDTreeFile'
-"
-"  if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
-"    let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
-"    exec 'syn match nerdtreeFileExtensionIcon_'.key.' #'.icon.'# containedin=nerdtreeFileExtensionLabel_'.key
-"    exec 'hi def link nerdtreeFileExtensionIcon_'.key.' nerdtreeFileExtensionLabel_'.key
-"  endif
-"
-"  if !exists('g:NERDTreeDisableFileExtensionHighlight') && val != ''
-"    "exec 'highlight nerdtreeFileExtensionIcon_'.key.' ctermbg=none ctermfg=#'.val.' guifg=#'.val
-"    if exists('g:NERDTreeFileExtensionHighlightFullName')
-"      call s:X('nerdtreeFileExtensionLabel_'.key, val, '', '')
-"    elseif exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
-"      call s:X('nerdtreeFileExtensionIcon_'.key, val, '', '')
-"    endif
-"  endif
-"endfor
+if !exists('g:NERDTreePatternMatchHighlightColor')
+  let g:NERDTreePatternMatchHighlightColor = {}
+endif
+
+for [key, val] in items(s:file_node_pattern_matches)
+  if !has_key(g:NERDTreePatternMatchHighlightColor, key)
+    let g:NERDTreePatternMatchHighlightColor[key] = val
+  endif
+endfor
+
+for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
+  let suffix = substitute(key, '\W', '', 'g')
+  let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
+  let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
+  let sub_regexp = substitute(key, '\v\\@<!\.', s:characters, 'g')
+
+  " let folder_identifier = 'nerdtreePatternMatchFolder_'.suffix
+  " let folder_icon_identifier = 'nerdtreePatternMatchFolderIcon_'.suffix
+  exec 'syn match '.label_identifier.' "\v'.sub_regexp.'" containedin=NERDTreeFile'
+  " TODO: handle executable file
+  exec 'hi def link '.label_identifier.' NERDTreeFile'
+
+  if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
+    let icon = g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key]
+    exec 'syn match '.icon_identifier.' "\zs['.icon.']\ze.*'.key.'" containedin=NERDTreeFile'
+    exec 'hi def link '.icon_identifier.' '.label_identifier
+  endif
+
+  if !exists('g:NERDTreeDisablePatternMatchHighlight') && val != ''
+    call s:X(icon_identifier, val, '', '')
+    if exists('g:NERDTreePatternMatchHighlightFullName')
+      call s:X(label_identifier, val, '', '')
+    endif
+  endif
+endfor
 
