@@ -330,15 +330,17 @@ let s:file_node_exact_matches = {
   \ 'procfile'                         : s:purple,
 \}
 
-" let s:file_node_pattern_matches = {
-"   \ '.*jquery.*\.js$'       : s:blue,
-"   \ '.*angular.*\.js$'      : s:red,
-"   \ '.*backbone.*\.js$'     : s:darkBlue,
-"   \ '.*require.*\.js$'      : s:blue,
-"   \ '.*materialize.*\.js$'  : s:salmon,
-"   \ '.*materialize.*\.css$' : s:salmon,
-"   \ '.*mootools.*\.js$'     : s:white
-" \}
+let s:file_node_pattern_matches = {
+  \ '.*jquery.*\.js$'       : s:blue,
+  \ '.*angular.*\.js$'      : s:red,
+  \ '.*backbone.*\.js$'     : s:darkBlue,
+  \ '.*require.*\.js$'      : s:blue,
+  \ '.*materialize.*\.js$'  : s:salmon,
+  \ '.*materialize.*\.css$' : s:salmon,
+  \ '.*mootools.*\.js$'     : s:white
+\}
+
+let s:characters = '[a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
 
 " Extension colors
 
@@ -358,7 +360,8 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   "let regexp = '\v(\S&[^]])*\.'.substitute(key, '\W', '\\\0', 'g')
   "let regexp = '\v(\s|\])@<=[a-zA-Z0-9\.\+-\#\*\%\!$_]+\.'.substitute(key, '\W', '\\\0', 'g')
   "let regexp = '\v(\s|\])@<=[a-zA-Z0-9\.\+-\*]+\.'.substitute(key, '\W', '\\\0', 'g')
-  let regexp = '\v(\w|[\#-\+\*\%\!\~\(\)\{\}\&]){-}\.'.substitute(key, '\W', '\\\0', 'g')
+  " let regexp = '\v(\w|[\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]){-}\.'.substitute(key, '\W', '\\\0', 'g')
+  let regexp = '\v'.s:characters.'+\.'.substitute(key, '\W', '\\\0', 'g')
   " let regexp = '\v((\[[^\]]+\]\zs\S+)|(\s\zs\S+))\.'.substitute(key, '\W', '\\\0', 'g')
   " let regexp = '\v\]@<=[a-zA-Z0-9_\!\@\#$\%\*\(\)\[\]\{\}\.\-]+\.'.substitute(key, '\W', '\\\0', 'g')
 
