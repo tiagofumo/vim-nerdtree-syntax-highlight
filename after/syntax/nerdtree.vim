@@ -197,13 +197,13 @@ endfun
 " Sets the highlighting for the given group
 fun! s:X(group, fg, bg, attr)
   if a:fg != ""
-    exec "hi " . a:group . " guifg=#" . a:fg . " ctermfg=" . s:rgb(a:fg)
+    exec "silent hi " . a:group . " guifg=#" . a:fg . " ctermfg=" . s:rgb(a:fg)
   endif
   if a:bg != ""
-    exec "hi " . a:group . " guibg=#" . a:bg . " ctermbg=" . s:rgb(a:bg)
+    exec "silent hi " . a:group . " guibg=#" . a:bg . " ctermbg=" . s:rgb(a:bg)
   endif
   if a:attr != ""
-    exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
+    exec "silent hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
   endif
 endfun
 
