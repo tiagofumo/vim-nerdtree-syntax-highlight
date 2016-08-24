@@ -1,5 +1,7 @@
 # vim-nerdtree-syntax-highlight
-This adds syntax for nerdtree on most common file extensions. Wether you want to easily see what is going on a new project, or trying to learn a new framework with a different folder structure, or just trying to make your vim look like it is 2016, this plugin can help you. This is intended to be used with [vim-devicons](https://github.com/ryanoasis/vim-devicons) to add color to icons or entire labels, but will work without it. It is possible to disable highlight, but the syntax will still be available if you want to make something specific with it. The file icons are linked to their labels which are linked to NERDTreeFile, so it will not break anything.
+This adds syntax for nerdtree on most common file extensions. Whether you want to easily see what is going on in a new project, or trying to learn a new framework with a different folder structure, or just trying to make your vim look like it is 2016, this plugin can help you. This is intended to be used with [vim-devicons](https://github.com/ryanoasis/vim-devicons) to add color to icons or entire labels, but will work without it. It is possible to disable highlight, but the syntax will still be available if you want to make something specific with it. The file icons are linked to their labels which are linked to NERDTreeFile, so it will not break anything.
+
+**Warning**: This is sort of a hack and has some limitations.
 
 File syntax will follow this pattern:
 
