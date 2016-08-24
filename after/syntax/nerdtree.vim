@@ -440,8 +440,10 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
   let sub_regexp = substitute(key, '\v\\@<!\.', s:characters, 'g')
+  let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\*$', '')
 
   exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
+  exec 'syn match '.label_identifier.' "\v\c'.exec_sub_regexp.'" containedin=NERDTreeFile'
   " TODO: handle executable file
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
