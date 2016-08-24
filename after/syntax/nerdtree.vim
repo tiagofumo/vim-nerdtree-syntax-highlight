@@ -416,7 +416,7 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
     endif
     if exists('g:NERDTreeHighlightFolders')
       call s:X(folder_icon_identifier, val, '', '')
-      if exists('g:NERDTreeExactMatchHighlightFullName')
+      if exists('g:NERDTreeHighlightFoldersFullName')
         call s:X(folder_identifier, val, '', '')
       endif
     endif
