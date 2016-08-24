@@ -441,15 +441,13 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
   let sub_regexp = substitute(key, '\v\\@<!\.', s:characters, 'g')
 
-  " let folder_identifier = 'nerdtreePatternMatchFolder_'.suffix
-  " let folder_icon_identifier = 'nerdtreePatternMatchFolderIcon_'.suffix
-  exec 'syn match '.label_identifier.' "\v'.sub_regexp.'" containedin=NERDTreeFile'
+  exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
   " TODO: handle executable file
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
     let icon = g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key]
-    exec 'syn match '.icon_identifier.' "\zs['.icon.']\ze.*'.key.'" containedin=NERDTreeFile'
+    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.sub_regexp.'" containedin=NERDTreeFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
