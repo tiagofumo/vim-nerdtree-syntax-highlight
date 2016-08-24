@@ -392,7 +392,7 @@ endfor
 
 for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   let label_identifier = 'nerdtreeExactMatchLabel_'.key
-  let icon_identifier = 'nerdtreeFileExactMatchIcon_'.key
+  let icon_identifier = 'nerdtreeExactMatchIcon_'.key
   let folder_identifier = 'nerdtreeExactMatchFolder_'.key
   let folder_icon_identifier = 'nerdtreeExactMatchFolderIcon_'.key
   exec 'silent syn match '.label_identifier.' "\c'.key.'$" containedin=NERDTreeFile'
