@@ -340,6 +340,44 @@ let s:file_node_pattern_matches = {
   \ '.*mootools.*\.js$'     : s:white
 \}
 
+let s:enabled_extensions = [
+  \ 'bat',
+  \ 'bmp',
+  \ 'c',
+  \ 'c',
+  \ 'coffee',
+  \ 'cpp',
+  \ 'css',
+  \ 'erb',
+  \ 'go',
+  \ 'html',
+  \ 'java',
+  \ 'jpg',
+  \ 'js',
+  \ 'json',
+  \ 'jsx',
+  \ 'lua',
+  \ 'markdown',
+  \ 'md',
+  \ 'php',
+  \ 'png',
+  \ 'py',
+  \ 'rb',
+  \ 'scala',
+  \ 'scss',
+  \ 'sh',
+  \ 'sql',
+  \ 'vim',
+\]
+
+if !exists('g:NERDTreeSyntaxEnabledExtensions')
+  let g:NERDTreeSyntaxEnabledExtensions = []
+endif
+
+for extension in s:enabled_extensions
+  call add(g:NERDTreeSyntaxEnabledExtensions, extension)
+endfor
+
 let s:characters = '[a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
 
 " Extension colors
@@ -349,7 +387,9 @@ if !exists('g:NERDTreeExtensionHighlightColor')
 endif
 
 for [key, val] in items(s:file_extension_colors)
-  if !has_key(g:NERDTreeExtensionHighlightColor , key)
+  if !has_key(g:NERDTreeExtensionHighlightColor , key) &&
+      \ (!exists('g:NERDTreeLimitedSyntax') ||
+      \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0)
     let g:NERDTreeExtensionHighlightColor[key] = val
   endif
 endfor
