@@ -70,16 +70,31 @@ let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color files ending with _spec.rb
+let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
 
 ```
 
 * Disable Highlight for specific file extension
 ```vim
+" If you have vim-devicons you can customize your icons for each file type.
 let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
 ```
 
-Obs: If you have [vim-devicons](https://github.com/ryanoasis/vim-devicons) and you want to customize icons you can customize your icons for each file type.
+
+
+* Disable uncommon file extensions highlighting (this is a good idea if you are experiencing lag when scrolling)
+```vim
+let g:NERDTreeLimitedSyntax = 1
+```
+* Disable all default file extensions highlighting (you can use this to easily customize which extensions you want to highlight)
+```vim
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+```
+* Customize which file extensions are enabled (you only need this if you set `g:NERDTreeLimitedSyntax` or `g:NERDTreeSyntaxDisableDefaultExtensions`)
+```vim
+" set g:NERDTreeExtensionHighlightColor if you want a custom color instead of the default one
+let g:NERDTreeSyntaxEnabledExtensions = ['hbs', 'lhs'] " enable highlight to .hbs and .lhs files with default colors
+```
 ### generate_files.sh script
 There is a script folder called generate_files.sh that will generate all the files supported by this plugin by default for a quick review. These files will be generated on a 'files' subfolder.

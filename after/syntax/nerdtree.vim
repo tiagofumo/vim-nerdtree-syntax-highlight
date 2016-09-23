@@ -341,28 +341,30 @@ let s:file_node_pattern_matches = {
 \}
 
 let s:enabled_extensions = [
-  \ 'bat',
   \ 'bmp',
-  \ 'c',
   \ 'c',
   \ 'coffee',
   \ 'cpp',
   \ 'css',
   \ 'erb',
   \ 'go',
+  \ 'hs',
   \ 'html',
   \ 'java',
   \ 'jpg',
   \ 'js',
   \ 'json',
   \ 'jsx',
+  \ 'less',
   \ 'lua',
   \ 'markdown',
   \ 'md',
   \ 'php',
   \ 'png',
+  \ 'pl',
   \ 'py',
   \ 'rb',
+  \ 'rs',
   \ 'scala',
   \ 'scss',
   \ 'sh',
@@ -374,9 +376,11 @@ if !exists('g:NERDTreeSyntaxEnabledExtensions')
   let g:NERDTreeSyntaxEnabledExtensions = []
 endif
 
-for extension in s:enabled_extensions
-  call add(g:NERDTreeSyntaxEnabledExtensions, extension)
-endfor
+if exists('g:NERDTreeLimitedSyntax') && !exists('g:NERDTreeSyntaxDisableDefaultExtensions')
+  for extension in s:enabled_extensions
+    call add(g:NERDTreeSyntaxEnabledExtensions, extension)
+  endfor
+endif
 
 let s:characters = '[a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
 
@@ -387,12 +391,14 @@ if !exists('g:NERDTreeExtensionHighlightColor')
 endif
 
 for [key, val] in items(s:file_extension_colors)
-  if !has_key(g:NERDTreeExtensionHighlightColor , key) &&
-      \ (!exists('g:NERDTreeLimitedSyntax') ||
-      \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0)
+  if ((exists('g:NERDTreeLimitedSyntax') ||
+        \ exists('g:NERDTreeSyntaxDisableDefaultExtensions')) ?
+        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0 :
+        \ !has_key(g:NERDTreeExtensionHighlightColor, key))
     let g:NERDTreeExtensionHighlightColor[key] = val
   endif
 endfor
+
 
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   let label_identifier = 'nerdtreeFileExtensionLabel_'.key
