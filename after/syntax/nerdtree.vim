@@ -223,7 +223,7 @@ let s:pink = "CB6F6F"
 let s:salmon = "EE6E73"
 let s:green = "8FAA54"
 let s:lightGreen = "31B53E"
-let s:white = "A5A2A2"
+let s:white = "FFFFFF"
 
 let s:file_extension_colors = {
   \ 'styl'     : s:green,
