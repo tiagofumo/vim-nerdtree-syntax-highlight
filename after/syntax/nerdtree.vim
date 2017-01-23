@@ -383,6 +383,8 @@ if exists('g:NERDTreeLimitedSyntax') && !exists('g:NERDTreeSyntaxDisableDefaultE
 endif
 
 let s:characters = '[a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
+" substitute will 'eat' single backlashes on the string
+let s:chars_double_lashes = substitute(s:characters, '\\', '\\\\', 'g')
 
 " Extension colors
 
@@ -485,9 +487,7 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let suffix = substitute(key, '\W', '', 'g')
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
-  " substitute will 'eat' single backlashes on the string
-  let chars_double_lashes = substitute(s:characters, '\\', '\\\\', 'g')
-  let sub_regexp = substitute(key, '\v\\@<!\.', chars_double_lashes, 'g')
+  let sub_regexp = substitute(key, '\v\\@<!\.', s:chars_double_lashes, 'g')
   let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\*$', '')
 
   exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
