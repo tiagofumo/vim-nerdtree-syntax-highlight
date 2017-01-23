@@ -485,7 +485,9 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let suffix = substitute(key, '\W', '', 'g')
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
-  let sub_regexp = substitute(key, '\v\\@<!\.', s:characters, 'g')
+  " substitute will 'eat' single backlashes on the string
+  let chars_double_lashes = substitute(s:characters, '\\', '\\\\', 'g')
+  let sub_regexp = substitute(key, '\v\\@<!\.', chars_double_lashes, 'g')
   let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\*$', '')
 
   exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
