@@ -307,7 +307,9 @@ let s:file_extension_colors = {
   \ 'psd'      : s:darkBlue,
   \ 'psb'      : s:darkBlue,
   \ 'ts'       : s:blue,
-  \ 'jl'       : s:purple
+  \ 'jl'       : s:purple,
+  \ 'ex'       : s:purple,
+  \ 'exs'      : s:purple
 \}
 
 let s:file_node_exact_matches = {
@@ -370,6 +372,8 @@ let s:enabled_extensions = [
   \ 'sh',
   \ 'sql',
   \ 'vim',
+  \ 'ex',
+  \ 'exs',
 \]
 
 if !exists('g:NERDTreeSyntaxEnabledExtensions')
