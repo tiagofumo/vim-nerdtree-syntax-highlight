@@ -71,19 +71,14 @@ let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the c
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
-
 ```
-
 * Disable Highlight for specific file extension
 ```vim
 " If you have vim-devicons you can customize your icons for each file type.
 let g:NERDTreeExtensionHighlightColor = {} "this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['css'] = '' "assigning it to an empty string will skip highlight
 ```
-
-
-
-* Disable uncommon file extensions highlighting (this is a good idea if you are experiencing lag when scrolling)
+* Disable uncommon file extensions highlighting (this is a good idea if you are experiencing lag when scrolling. Find more about lag on next session.)
 ```vim
 let g:NERDTreeLimitedSyntax = 1
 ```
@@ -96,5 +91,26 @@ let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 " set g:NERDTreeExtensionHighlightColor if you want a custom color instead of the default one
 let g:NERDTreeSyntaxEnabledExtensions = ['hbs', 'lhs'] " enable highlight to .hbs and .lhs files with default colors
 ```
+### Mitigating lag issues
+Some users are reporting they feel some lag when using this plugin. There are ways to mitigate this lag. One way is to disable most of the the default highlight exntensions. The code is going to color over than 80 extensions by default, even if you are not using these extensions. One easy way to do it is use the limited syntax mode:
+```vim
+let g:NERDTreeLimitedSyntax = 1
+```
+This configuration will limit the number of extensions used to these:
+```
+.bmp, .c, .coffee, .cpp, .css, .erb, .go, .hs, .html, .java, .jpg, .js, .json, .jsx, .less, .lua, .markdown, .md, .php, .png, .pl, .py, .rb, .rs, .scala, .scss, .sh, .sql, .vim
+```
+If this doens't solve your lag, or doesn't include the extensions you use, you can choose the exntensions you want to enable. For example, if you work with C, php, ruby and javascript, you could add something like this to your `.vimrc` instead:
+```vim
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeDisableExactMatchHighlight = 1
+let g:NERDTreeDisablePatternMatchHighlight = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'php', 'rb', 'js', 'css'] " example
+```
+A user reported that disabling `Cursorline` highlight from NERDTree fixed the issue. You can do this by adding this to your `.vimrc`
+```vim
+let g:NERDTreeHighlightCursorline = 0
+```
+There is an [issue](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight/issues/6) about this lag problem. If you find any solutions please comment there, so other people can see it.
 ### generate_files.sh script
 There is a script folder called generate_files.sh that will generate all the files supported by this plugin by default for a quick review. These files will be generated on a 'files' subfolder.
