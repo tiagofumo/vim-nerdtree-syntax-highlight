@@ -328,6 +328,7 @@ let s:file_node_exact_matches = {
   \ 'node_modules'                     : s:green,
   \ 'react.jsx'                        : s:blue,
   \ 'procfile'                         : s:purple,
+  \ 'dockerfile'                       : s:blue,
 \}
 
 let s:file_node_pattern_matches = {
