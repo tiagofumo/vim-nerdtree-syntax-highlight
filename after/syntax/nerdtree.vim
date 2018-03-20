@@ -282,6 +282,7 @@ let s:file_extension_colors = {
   \ 'cljc'     : s:green,
   \ 'cljs'     : s:green,
   \ 'edn'      : s:green,
+  \ 'vue'      : s:green,
   \ 'scala'    : s:red,
   \ 'go'       : s:beige,
   \ 'dart'     : s:blue,
