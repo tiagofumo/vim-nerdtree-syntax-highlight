@@ -282,6 +282,7 @@ let s:file_extension_colors = {
   \ 'cljc'     : s:green,
   \ 'cljs'     : s:green,
   \ 'edn'      : s:green,
+  \ 'vue'      : s:green,
   \ 'scala'    : s:red,
   \ 'go'       : s:beige,
   \ 'dart'     : s:blue,
@@ -412,9 +413,13 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
-    let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
-    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'\*$" containedin=NERDTreeExecFile'
+    let icon_exp = '['.g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key].']'
+    if exists('g:WebDevIconsNerdTreeAfterGlyphPadding') && g:WebDevIconsNerdTreeAfterGlyphPadding =~ '\s\+'
+      let icon_exp = icon_exp.'.\{1}'
+    endif
+
+    exec 'silent syn match '.icon_identifier.' "\zs'.icon_exp.'\ze.\+\.'.key.'$" containedin=NERDTreeFile'
+    exec 'silent syn match '.icon_identifier.' "\zs'.icon_exp.'\ze.\+\.'.key.'\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
@@ -449,11 +454,15 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   exec 'silent syn match '.folder_identifier.' "\v\c<'.key.'\ze\/" containedin=NERDTreeDir'
   exec 'hi def link '.folder_identifier.' NERDTreeDir'
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
-    let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
-    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\*$" containedin=NERDTreeExecFile'
+    let icon_exp = '['.g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key].']'
+    if exists('g:WebDevIconsNerdTreeAfterGlyphPadding') && g:WebDevIconsNerdTreeAfterGlyphPadding =~ '\s\+'
+      let icon_exp = icon_exp.'.\{1}'
+    endif
+
+    exec 'silent syn match '.icon_identifier.' "\c'.icon_exp.'\ze.*'.key.'$" containedin=NERDTreeFile'
+    exec 'silent syn match '.icon_identifier.' "\c'.icon_exp.'\ze.*'.key.'\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
-    exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeDir'
+    exec 'silent syn match '.folder_icon_identifier.' "\c'.icon_exp.'\ze.*'.key.'\/" containedin=NERDTreeDir'
     exec 'hi def link '.folder_icon_identifier.' '.folder_identifier
   endif
 
@@ -496,8 +505,12 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
-    let icon = g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key]
-    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.sub_regexp.'" containedin=NERDTreeFile'
+    let icon_exp = '['.g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key].']'
+    if exists('g:WebDevIconsNerdTreeAfterGlyphPadding') && g:WebDevIconsNerdTreeAfterGlyphPadding =~ '\s\+'
+      let icon_exp = icon_exp.'.\{1}'
+    endif
+
+    exec 'syn match '.icon_identifier.' "\v\c\zs'.icon_exp.'\ze.*'.sub_regexp.'" containedin=NERDTreeFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
