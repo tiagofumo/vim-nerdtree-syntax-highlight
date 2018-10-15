@@ -329,6 +329,7 @@ let s:file_node_exact_matches = {
   \ 'node_modules'                     : s:green,
   \ 'react.jsx'                        : s:blue,
   \ 'typescript.jsx'                   : s:blue,
+  \ 'typescript.tsx'                   : s:blue,
   \ 'procfile'                         : s:purple,
 \}
 
@@ -488,7 +489,7 @@ endfor
 for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let suffix = substitute(key, '\W', '', 'g')
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
-  let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
+  let icon_identifier = 'nerdtreePatternMatchIcon_'.suffixt
   let sub_regexp = substitute(key, '\v\\@<!\.', s:chars_double_lashes, 'g')
   let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\*$', '')
 
