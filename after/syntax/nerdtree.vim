@@ -307,6 +307,7 @@ let s:file_extension_colors = {
   \ 'psd'      : s:darkBlue,
   \ 'psb'      : s:darkBlue,
   \ 'ts'       : s:blue,
+  \ 'tsx'      : s:blue,
   \ 'jl'       : s:purple
 \}
 
@@ -327,6 +328,7 @@ let s:file_node_exact_matches = {
   \ 'license'                          : s:white,
   \ 'node_modules'                     : s:green,
   \ 'react.jsx'                        : s:blue,
+  \ 'typescript.jsx'                   : s:blue,
   \ 'procfile'                         : s:purple,
 \}
 
