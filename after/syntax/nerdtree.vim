@@ -307,7 +307,8 @@ let s:file_extension_colors = {
   \ 'psd'      : s:darkBlue,
   \ 'psb'      : s:darkBlue,
   \ 'ts'       : s:blue,
-  \ 'jl'       : s:purple
+  \ 'jl'       : s:purple,
+  \ 'vue'      : s:green
 \}
 
 let s:file_node_exact_matches = {
