@@ -129,49 +129,45 @@ pattern_matches=(
   \ 'test.require.js'
 )
 
-if [ ! -d "./files/" ]; then
-  mkdir './files'
-fi
+mkdir -p './files/normal/extensions'
+mkdir -p './files/normal/exact_matches'
+mkdir -p './files/normal/pattern_matches'
+mkdir -p './files/normal/test_files'
+mkdir -p './files/executable/extensions'
+mkdir -p './files/executable/exact_matches'
+mkdir -p './files/executable/pattern_matches'
+mkdir -p './files/executable/test_files'
 
-if [ ! -d "./files/extensions/" ]; then
-  mkdir './files/extensions'
-fi
-
-if [ ! -d "./files/exact_matches/" ]; then
-  mkdir './files/exact_matches'
-fi
-
-for extension in ${extensions[@]}
+for exact_match_folder in ${exact_match_folders[@]}
 do
-  touch "files/extensions/$extension.$extension"
+	mkdir -p "files/normal/exact_matches/$exact_match_folder"
+	mkdir -p "files/executable/exact_matches/$exact_match_folder"
 done
 
 for exact_match in ${exact_matches[@]}
 do
-  touch "files/exact_matches/$exact_match"
+  touch "files/normal/exact_matches/$exact_match"
+  touch "files/executable/exact_matches/$exact_match"
+	chmod +x "files/executable/exact_matches/$exact_match"
 done
 
-for exact_match_folder in ${exact_match_folders[@]}
+for extension in ${extensions[@]}
 do
-  if [ ! -d "./files/exact_matches/$exact_match_folder/" ]; then
-    mkdir "./files/exact_matches/$exact_match_folder"
-  fi
+  touch "files/normal/extensions/$extension.$extension"
+  touch "files/executable/extensions/$extension.$extension"
+  chmod +x "files/executable/extensions/$extension.$extension"
 done
-
-if [ ! -d "./files/test_files/" ]; then
-  mkdir './files/test_files'
-fi
 
 for test_file in ${test_files[@]}
 do
-  touch "files/test_files/$test_file"
+  touch "files/normal/test_files/$test_file"
+  touch "files/executable/test_files/$test_file"
+  chmod +x "files/executable/test_files/$test_file"
 done
-
-if [ ! -d "./files/pattern_matches/" ]; then
-  mkdir './files/pattern_matches'
-fi
 
 for pattern_match in ${pattern_matches[@]}
 do
-  touch "files/pattern_matches/$pattern_match"
+  touch "files/normal/pattern_matches/$pattern_match"
+  touch "files/executable/pattern_matches/$pattern_match"
+  chmod +x "files/executable/pattern_matches/$pattern_match"
 done
