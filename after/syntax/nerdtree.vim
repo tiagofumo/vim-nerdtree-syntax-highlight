@@ -408,13 +408,13 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   let regexp = '\v'.s:characters.'+\.'.substitute(key, '\W', '\\\0', 'g')
 
   exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeFile'
-  exec 'silent syn match '.label_identifier.' "'.regexp.'\*$" containedin=NERDTreeExecFile'
+  exec 'silent syn match '.label_identifier.' "'.regexp.'*\W\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
     exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'\*$" containedin=NERDTreeExecFile'
+    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'*\W\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
