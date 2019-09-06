@@ -446,14 +446,14 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   exec 'silent syn match '.label_identifier.' "\c'.key.'$" containedin=NERDTreeFile'
   exec 'silent syn match '.label_identifier.' "\c'.key.'\W*\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
-  exec 'silent syn match '.folder_identifier.' "\v\c<'.key.'\ze\/" containedin=NERDTreeDir'
-  exec 'hi def link '.folder_identifier.' NERDTreeDir'
+  exec 'silent syn match '.folder_identifier.' "\v\c<'.key.'\ze\/" containedin=NERDTreeFlags'
+  exec 'hi def link '.folder_identifier.' NERDTreeFlags'
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
     exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'$" containedin=NERDTreeFile'
     exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\W*\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
-    exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeDir'
+    exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeFlags'
     exec 'hi def link '.folder_icon_identifier.' '.folder_identifier
   endif
 
