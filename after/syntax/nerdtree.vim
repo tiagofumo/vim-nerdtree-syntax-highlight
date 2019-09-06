@@ -444,14 +444,14 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   let folder_identifier = 'nerdtreeExactMatchFolder_'.key
   let folder_icon_identifier = 'nerdtreeExactMatchFolderIcon_'.key
   exec 'silent syn match '.label_identifier.' "\c'.key.'$" containedin=NERDTreeFile'
-  exec 'silent syn match '.label_identifier.' "\c'.key.'\*$" containedin=NERDTreeExecFile'
+  exec 'silent syn match '.label_identifier.' "\c'.key.'\W*\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
   exec 'silent syn match '.folder_identifier.' "\v\c<'.key.'\ze\/" containedin=NERDTreeDir'
   exec 'hi def link '.folder_identifier.' NERDTreeDir'
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
     exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\*$" containedin=NERDTreeExecFile'
+    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\W*\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
     exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeDir'
     exec 'hi def link '.folder_icon_identifier.' '.folder_identifier
@@ -488,16 +488,17 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
   let sub_regexp = substitute(key, '\v\\@<!\.', s:chars_double_lashes, 'g')
-  let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\*$', '')
+  let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\W\*\\\*\$', '')
 
   exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
-  exec 'syn match '.label_identifier.' "\v\c'.exec_sub_regexp.'" containedin=NERDTreeFile'
+  exec 'syn match '.label_identifier.' "\v\c'.exec_sub_regexp.'" containedin=NERDTreeExecFile'
   " TODO: handle executable file
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
     let icon = g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key]
     exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.sub_regexp.'" containedin=NERDTreeFile'
+    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.exec_sub_regexp.'" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
