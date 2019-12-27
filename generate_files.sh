@@ -74,6 +74,8 @@ extensions=(
   \ 'rlib'
   \ 'd'
   \ 'erl'
+  \ 'ex'
+  \ 'exs'
   \ 'hrl'
   \ 'vim'
   \ 'ai'

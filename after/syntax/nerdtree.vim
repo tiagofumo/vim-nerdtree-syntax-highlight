@@ -301,6 +301,8 @@ let s:file_extension_colors = {
   \ 'rlib'     : s:darkOrange,
   \ 'd'        : s:red,
   \ 'erl'      : s:lightPurple,
+  \ 'ex'       : s:lightPurple,
+  \ 'exs'      : s:lightPurple,
   \ 'hrl'      : s:pink,
   \ 'vim'      : s:green,
   \ 'ai'       : s:darkOrange,
