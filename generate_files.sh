@@ -91,6 +91,7 @@ exact_match_folders=(
 )
 
 exact_matches=(
+  \ 'mix.lock'
   \ 'gruntfile.coffee'
   \ 'gruntfile.js'
   \ 'gruntfile.ls'

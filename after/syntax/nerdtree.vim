@@ -313,6 +313,7 @@ let s:file_extension_colors = {
 \}
 
 let s:file_node_exact_matches = {
+  \ 'mix.lock'                         : s:lightPurple,
   \ 'gruntfile.coffee'                 : s:yellow,
   \ 'gruntfile.js'                     : s:yellow,
   \ 'gruntfile.ls'                     : s:yellow,
