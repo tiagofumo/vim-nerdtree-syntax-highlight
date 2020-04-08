@@ -363,6 +363,8 @@ let s:file_node_exact_matches = {
   \ 'license'                          : s:white,
   \ 'node_modules'                     : s:green,
   \ 'react.jsx'                        : s:blue,
+  \ 'typescript.jsx'                   : s:blue,
+  \ 'typescript.tsx'                   : s:blue,
   \ 'procfile'                         : s:purple,
   \ 'dockerfile'                       : s:blue,
   \ 'docker-compose.yml'               : s:blue,
