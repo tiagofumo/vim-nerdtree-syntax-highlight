@@ -425,7 +425,7 @@ if exists('g:NERDTreeLimitedSyntax') && !exists('g:NERDTreeSyntaxDisableDefaultE
   endfor
 endif
 
-let s:characters = '[a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
+let s:characters = '[ a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
 " substitute will 'eat' single backlashes on the string
 let s:chars_double_lashes = substitute(s:characters, '\\', '\\\\', 'g')
 
