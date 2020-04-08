@@ -224,9 +224,11 @@ let s:salmon = "EE6E73"
 let s:green = "8FAA54"
 let s:lightGreen = "31B53E"
 let s:white = "FFFFFF"
+let s:vuejs = '42B883'
 
 let s:file_extension_colors = {
   \ 'styl'     : s:green,
+  \ 'sass'     : s:pink,
   \ 'scss'     : s:pink,
   \ 'htm'      : s:darkOrange,
   \ 'html'     : s:darkOrange,
@@ -236,9 +238,12 @@ let s:file_extension_colors = {
   \ 'css'      : s:blue,
   \ 'less'     : s:darkBlue,
   \ 'md'       : s:yellow,
+  \ 'mdx'      : s:yellow,
   \ 'markdown' : s:yellow,
+  \ 'rmd'      : s:yellow,
   \ 'json'     : s:beige,
   \ 'js'       : s:beige,
+  \ 'mjs'      : s:beige,
   \ 'jsx'      : s:blue,
   \ 'rb'       : s:red,
   \ 'php'      : s:purple,
@@ -252,11 +257,14 @@ let s:file_extension_colors = {
   \ 'conf'     : s:white,
   \ 'ini'      : s:white,
   \ 'yml'      : s:white,
+  \ 'yaml'     : s:white,
+  \ 'toml'     : s:white,
   \ 'bat'      : s:white,
   \ 'jpg'      : s:aqua,
   \ 'jpeg'     : s:aqua,
   \ 'bmp'      : s:aqua,
   \ 'png'      : s:aqua,
+  \ 'webp'     : s:aqua,
   \ 'gif'      : s:aqua,
   \ 'ico'      : s:aqua,
   \ 'twig'     : s:green,
@@ -266,12 +274,23 @@ let s:file_extension_colors = {
   \ 'cc'       : s:blue,
   \ 'cp'       : s:blue,
   \ 'c'        : s:blue,
+  \ 'cs'       : s:blue,
+  \ 'h'        : s:blue,
+  \ 'hh'       : s:blue,
+  \ 'hpp'      : s:blue,
+  \ 'hxx'      : s:blue,
   \ 'hs'       : s:beige,
   \ 'lhs'      : s:beige,
   \ 'lua'      : s:purple,
   \ 'java'     : s:purple,
   \ 'sh'       : s:lightPurple,
   \ 'fish'     : s:green,
+  \ 'bash'     : s:lightPurple,
+  \ 'zsh'      : s:white,
+  \ 'ksh'      : s:white,
+  \ 'csh'      : s:white,
+  \ 'awk'      : s:white,
+  \ 'ps1'      : s:blue,
   \ 'ml'       : s:yellow,
   \ 'mli'      : s:yellow,
   \ 'diff'     : s:white,
@@ -302,13 +321,22 @@ let s:file_extension_colors = {
   \ 'd'        : s:red,
   \ 'erl'      : s:lightPurple,
   \ 'hrl'      : s:pink,
+  \ 'ex'       : s:purple,
+  \ 'exs'      : s:purple,
+  \ 'eex'      : s:purple,
+  \ 'leex'     : s:white,
   \ 'vim'      : s:green,
   \ 'ai'       : s:darkOrange,
   \ 'psd'      : s:darkBlue,
   \ 'psb'      : s:darkBlue,
   \ 'ts'       : s:blue,
   \ 'tsx'      : s:blue,
-  \ 'jl'       : s:purple
+  \ 'jl'       : s:purple,
+  \ 'pp'       : s:white,
+  \ 'vue'      : s:vuejs,
+  \ 'elm'      : s:white,
+  \ 'swift'    : s:orange,
+  \ 'xcplayground' : s:orange
 \}
 
 let s:file_node_exact_matches = {
@@ -318,11 +346,18 @@ let s:file_node_exact_matches = {
   \ 'gulpfile.coffee'                  : s:pink,
   \ 'gulpfile.js'                      : s:pink,
   \ 'gulpfile.ls'                      : s:pink,
+  \ 'mix.lock'                         : s:white,
   \ 'dropbox'                          : s:blue,
   \ '.ds_store'                        : s:white,
   \ '.gitconfig'                       : s:white,
   \ '.gitignore'                       : s:white,
+  \ '.gitlab-ci.yml'                   : s:orange,
   \ '.bashrc'                          : s:white,
+  \ '.zshrc'                           : s:white,
+  \ '.vimrc'                           : s:green,
+  \ '.gvimrc'                          : s:green,
+  \ '_vimrc'                           : s:green,
+  \ '_gvimrc'                          : s:green,
   \ '.bashprofile'                     : s:white,
   \ 'favicon.ico'                      : s:yellow,
   \ 'license'                          : s:white,
@@ -331,6 +366,10 @@ let s:file_node_exact_matches = {
   \ 'typescript.jsx'                   : s:blue,
   \ 'typescript.tsx'                   : s:blue,
   \ 'procfile'                         : s:purple,
+  \ 'dockerfile'                       : s:blue,
+  \ 'docker-compose.yml'               : s:blue,
+  \ 'makefile'                         : s:white,
+  \ 'cmakelists.txt'                   : s:white
 \}
 
 let s:file_node_pattern_matches = {
@@ -340,7 +379,9 @@ let s:file_node_pattern_matches = {
   \ '.*require.*\.js$'      : s:blue,
   \ '.*materialize.*\.js$'  : s:salmon,
   \ '.*materialize.*\.css$' : s:salmon,
-  \ '.*mootools.*\.js$'     : s:white
+  \ '.*mootools.*\.js$'     : s:white,
+  \ '.*vimrc.*'             : s:green,
+  \ 'Vagrantfile$'          : s:blue
 \}
 
 let s:enabled_extensions = [
@@ -348,6 +389,7 @@ let s:enabled_extensions = [
   \ 'c',
   \ 'coffee',
   \ 'cpp',
+  \ 'cs',
   \ 'css',
   \ 'erb',
   \ 'go',
@@ -385,7 +427,7 @@ if exists('g:NERDTreeLimitedSyntax') && !exists('g:NERDTreeSyntaxDisableDefaultE
   endfor
 endif
 
-let s:characters = '[a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
+let s:characters = '[ a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
 " substitute will 'eat' single backlashes on the string
 let s:chars_double_lashes = substitute(s:characters, '\\', '\\\\', 'g')
 
@@ -396,11 +438,12 @@ if !exists('g:NERDTreeExtensionHighlightColor')
 endif
 
 for [key, val] in items(s:file_extension_colors)
-  if ((exists('g:NERDTreeLimitedSyntax') ||
-        \ exists('g:NERDTreeSyntaxDisableDefaultExtensions')) ?
-        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0 :
-        \ !has_key(g:NERDTreeExtensionHighlightColor, key))
-    let g:NERDTreeExtensionHighlightColor[key] = val
+  if (!(exists('g:NERDTreeLimitedSyntax') ||
+        \ exists('g:NERDTreeSyntaxDisableDefaultExtensions')) ||
+        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0)
+    if (!has_key(g:NERDTreeExtensionHighlightColor, key))
+      let g:NERDTreeExtensionHighlightColor[key] = val
+    endif
   endif
 endfor
 
@@ -411,13 +454,13 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   let regexp = '\v'.s:characters.'+\.'.substitute(key, '\W', '\\\0', 'g')
 
   exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeFile'
-  exec 'silent syn match '.label_identifier.' "'.regexp.'\*$" containedin=NERDTreeExecFile'
+  exec 'silent syn match '.label_identifier.' "'.regexp.'\W*\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
     exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'\*$" containedin=NERDTreeExecFile'
+    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'\W*\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
@@ -447,16 +490,16 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   let folder_identifier = 'nerdtreeExactMatchFolder_'.key
   let folder_icon_identifier = 'nerdtreeExactMatchFolderIcon_'.key
   exec 'silent syn match '.label_identifier.' "\c'.key.'$" containedin=NERDTreeFile'
-  exec 'silent syn match '.label_identifier.' "\c'.key.'\*$" containedin=NERDTreeExecFile'
+  exec 'silent syn match '.label_identifier.' "\c'.key.'\W*\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
-  exec 'silent syn match '.folder_identifier.' "\v\c<'.key.'\ze\/" containedin=NERDTreeDir'
-  exec 'hi def link '.folder_identifier.' NERDTreeDir'
+  exec 'silent syn match '.folder_identifier.' "\v\c<'.key.'\ze\/" containedin=NERDTreeFlags'
+  exec 'hi def link '.folder_identifier.' NERDTreeFlags'
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
     exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\*$" containedin=NERDTreeExecFile'
+    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\W*\*$" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
-    exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeDir'
+    exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeFlags'
     exec 'hi def link '.folder_icon_identifier.' '.folder_identifier
   endif
 
@@ -491,16 +534,17 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
   let sub_regexp = substitute(key, '\v\\@<!\.', s:chars_double_lashes, 'g')
-  let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\*$', '')
+  let exec_sub_regexp = substitute(sub_regexp, '\$$', '\\W\*\\\*\$', '')
 
   exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
-  exec 'syn match '.label_identifier.' "\v\c'.exec_sub_regexp.'" containedin=NERDTreeFile'
+  exec 'syn match '.label_identifier.' "\v\c'.exec_sub_regexp.'" containedin=NERDTreeExecFile'
   " TODO: handle executable file
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
     let icon = g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key]
     exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.sub_regexp.'" containedin=NERDTreeFile'
+    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.exec_sub_regexp.'" containedin=NERDTreeExecFile'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
