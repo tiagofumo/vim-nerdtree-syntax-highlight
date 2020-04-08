@@ -435,11 +435,12 @@ if !exists('g:NERDTreeExtensionHighlightColor')
 endif
 
 for [key, val] in items(s:file_extension_colors)
-  if ((exists('g:NERDTreeLimitedSyntax') ||
-        \ exists('g:NERDTreeSyntaxDisableDefaultExtensions')) ?
-        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0 :
-        \ !has_key(g:NERDTreeExtensionHighlightColor, key))
-    let g:NERDTreeExtensionHighlightColor[key] = val
+  if (!(exists('g:NERDTreeLimitedSyntax') ||
+        \ exists('g:NERDTreeSyntaxDisableDefaultExtensions')) ||
+        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0)
+    if (!has_key(g:NERDTreeExtensionHighlightColor, key))
+      let g:NERDTreeExtensionHighlightColor[key] = val
+    endif
   endif
 endfor
 
