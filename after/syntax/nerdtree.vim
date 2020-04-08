@@ -224,6 +224,7 @@ let s:salmon = "EE6E73"
 let s:green = "8FAA54"
 let s:lightGreen = "31B53E"
 let s:white = "FFFFFF"
+let s:vuejs = '42B883'
 
 let s:file_extension_colors = {
   \ 'styl'     : s:green,
@@ -332,7 +333,7 @@ let s:file_extension_colors = {
   \ 'tsx'      : s:blue,
   \ 'jl'       : s:purple,
   \ 'pp'       : s:white,
-  \ 'vue'      : s:green,
+  \ 'vue'      : s:vuejs,
   \ 'elm'      : s:white,
   \ 'swift'    : s:orange,
   \ 'xcplayground' : s:orange
