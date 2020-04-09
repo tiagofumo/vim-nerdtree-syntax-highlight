@@ -421,6 +421,10 @@ if !exists('g:NERDTreeSyntaxEnabledExtensions')
   let g:NERDTreeSyntaxEnabledExtensions = []
 endif
 
+if !exists('g:NERDTreeSyntaxEnabledExactMatches')
+  let g:NERDTreeSyntaxEnabledExactMatches = []
+endif
+
 if exists('g:NERDTreeLimitedSyntax') && !exists('g:NERDTreeSyntaxDisableDefaultExtensions')
   for extension in s:enabled_extensions
     call add(g:NERDTreeSyntaxEnabledExtensions, extension)
@@ -471,13 +475,14 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
 endfor
 
 "Exact Matches
-
 if !exists('g:NERDTreeExactMatchHighlightColor')
   let g:NERDTreeExactMatchHighlightColor = {}
 endif
 
 for [key, val] in items(s:file_node_exact_matches)
-  if !has_key(g:NERDTreeExactMatchHighlightColor, key)
+  if (!exists('g:NERDTreeSyntaxDisableDefaultExactMatches') ||
+        \ index(g:NERDTreeSyntaxEnabledExactMatches, key) >= 0) &&
+        \ !has_key(g:NERDTreeExactMatchHighlightColor, key)
     let g:NERDTreeExactMatchHighlightColor[key] = val
   endif
 endfor
@@ -522,7 +527,8 @@ if !exists('g:NERDTreePatternMatchHighlightColor')
 endif
 
 for [key, val] in items(s:file_node_pattern_matches)
-  if !has_key(g:NERDTreePatternMatchHighlightColor, key)
+  if !exists('g:NERDTreeSyntaxDisableDefaultPatternMatches') &&
+        \ !has_key(g:NERDTreePatternMatchHighlightColor, key)
     let g:NERDTreePatternMatchHighlightColor[key] = val
   endif
 endfor
