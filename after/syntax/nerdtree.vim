@@ -440,13 +440,11 @@ endif
 for [key, val] in items(s:file_extension_colors)
   if (!(exists('g:NERDTreeLimitedSyntax') ||
         \ exists('g:NERDTreeSyntaxDisableDefaultExtensions')) ||
-        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0)
-    if (!has_key(g:NERDTreeExtensionHighlightColor, key))
-      let g:NERDTreeExtensionHighlightColor[key] = val
-    endif
+        \ index(g:NERDTreeSyntaxEnabledExtensions, key) >= 0) &&
+        \ !has_key(g:NERDTreeExtensionHighlightColor, key)
+    let g:NERDTreeExtensionHighlightColor[key] = val
   endif
 endfor
-
 
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
   let label_identifier = 'nerdtreeFileExtensionLabel_'.key
