@@ -116,5 +116,7 @@ A user reported that disabling `Cursorline` highlight from NERDTree fixed the is
 let g:NERDTreeHighlightCursorline = 0
 ```
 There is an [issue](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight/issues/6) about this lag problem. If you find any solutions please comment there, so other people can see it.
+### Current limitation on finding and solving bugs on different setups
+There are many different setups one can have while using vim (neovim, gvim, different terminals, with tmux, different operating systems, etc) which makes it harder to debug setup specific issues.
 ### generate_files.sh script
 There is a script called generate_files.sh that will generate all the files supported by this plugin by default for a quick review. These files will be generated on a 'files' subfolder.
