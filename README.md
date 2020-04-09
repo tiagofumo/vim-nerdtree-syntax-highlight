@@ -117,4 +117,4 @@ let g:NERDTreeHighlightCursorline = 0
 ```
 There is an [issue](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight/issues/6) about this lag problem. If you find any solutions please comment there, so other people can see it.
 ### generate_files.sh script
-There is a script folder called generate_files.sh that will generate all the files supported by this plugin by default for a quick review. These files will be generated on a 'files' subfolder.
+There is a script called generate_files.sh that will generate all the files supported by this plugin by default for a quick review. These files will be generated on a 'files' subfolder.
