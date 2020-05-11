@@ -214,6 +214,7 @@ let s:blue = "689FB6"
 let s:darkBlue = "44788E"
 let s:purple = "834F79"
 let s:lightPurple = "834F79"
+let s:juliaPurple = "9558B2"
 let s:red = "AE403F"
 let s:beige = "F5C06F"
 let s:yellow = "F09F17"
@@ -331,7 +332,7 @@ let s:file_extension_colors = {
   \ 'psb'      : s:darkBlue,
   \ 'ts'       : s:blue,
   \ 'tsx'      : s:blue,
-  \ 'jl'       : s:purple,
+  \ 'jl'       : s:juliaPurple,
   \ 'pp'       : s:white,
   \ 'vue'      : s:vuejs,
   \ 'elm'      : s:white,
