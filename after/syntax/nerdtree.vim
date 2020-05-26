@@ -461,8 +461,8 @@ for [key, val] in items(g:NERDTreeExtensionHighlightColor)
 
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols[key]
-    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'\W*\*$" containedin=NERDTreeExecFile'
+    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'$" containedin=NERDTreeFlags'
+    exec 'silent syn match '.icon_identifier.' "\zs['.icon.']\ze.\+\.'.key.'\W*\*$" containedin=NERDTreeFlags'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
@@ -499,8 +499,8 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
   exec 'hi def link '.folder_identifier.' NERDTreeFlags'
   if exists('g:WebDevIconsUnicodeDecorateFileNodesExactSymbols["'.key.'"]')
     let icon = g:WebDevIconsUnicodeDecorateFileNodesExactSymbols[key]
-    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'$" containedin=NERDTreeFile'
-    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\W*\*$" containedin=NERDTreeExecFile'
+    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'$" containedin=NERDTreeFlags'
+    exec 'silent syn match '.icon_identifier.' "\c['.icon.']\ze.*'.key.'\W*\*$" containedin=NERDTreeFlags'
     exec 'hi def link '.icon_identifier.' '.label_identifier
     exec 'silent syn match '.folder_icon_identifier.' "\c['.icon.']\ze.*'.key.'\/" containedin=NERDTreeFlags'
     exec 'hi def link '.folder_icon_identifier.' '.folder_identifier
@@ -547,8 +547,8 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
 
   if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
     let icon = g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols[key]
-    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.sub_regexp.'" containedin=NERDTreeFile'
-    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.exec_sub_regexp.'" containedin=NERDTreeExecFile'
+    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.sub_regexp.'" containedin=NERDTreeFlags'
+    exec 'syn match '.icon_identifier.' "\v\c\zs['.icon.']\ze.*'.exec_sub_regexp.'" containedin=NERDTreeFlags'
     exec 'hi def link '.icon_identifier.' '.label_identifier
   endif
 
