@@ -156,6 +156,7 @@ test_files=(
   \ 'hyphen-file.hyphen-file.js'
   \ '-.hyphen-file.js'
   \ '**%%44#@@!!@##$!!#!.error.js'
+  \ 'file with spaces.js'
 )
 
 pattern_matches=(
@@ -178,36 +179,36 @@ mkdir -p './files/executable/exact_matches'
 mkdir -p './files/executable/pattern_matches'
 mkdir -p './files/executable/test_files'
 
-for exact_match_folder in ${exact_match_folders[@]}
+for exact_match_folder in "${exact_match_folders[@]}"
 do
-	mkdir -p "files/normal/exact_matches/$exact_match_folder"
-	mkdir -p "files/executable/exact_matches/$exact_match_folder"
+  mkdir -p "files/normal/exact_matches/$exact_match_folder"
+  mkdir -p "files/executable/exact_matches/$exact_match_folder"
 done
 
-for exact_match in ${exact_matches[@]}
+for exact_match in "${exact_matches[@]}"
 do
   touch "files/normal/exact_matches/$exact_match"
   touch "files/executable/exact_matches/$exact_match"
-	chmod +x "files/executable/exact_matches/$exact_match"
 done
+chmod -R +x "files/executable/exact_matches/"
 
-for extension in ${extensions[@]}
+for extension in "${extensions[@]}"
 do
   touch "files/normal/extensions/$extension.$extension"
   touch "files/executable/extensions/$extension.$extension"
-  chmod +x "files/executable/extensions/$extension.$extension"
 done
+chmod -R +x "files/executable/extensions/"
 
-for test_file in ${test_files[@]}
+for test_file in "${test_files[@]}"
 do
   touch "files/normal/test_files/$test_file"
   touch "files/executable/test_files/$test_file"
-  chmod +x "files/executable/test_files/$test_file"
 done
+chmod -R +x "files/executable/test_files/"
 
-for pattern_match in ${pattern_matches[@]}
+for pattern_match in "${pattern_matches[@]}"
 do
   touch "files/normal/pattern_matches/$pattern_match"
   touch "files/executable/pattern_matches/$pattern_match"
-  chmod +x "files/executable/pattern_matches/$pattern_match"
 done
+chmod -R +x "files/executable/pattern_matches/"
