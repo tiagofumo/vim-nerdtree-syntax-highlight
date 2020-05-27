@@ -433,11 +433,10 @@ if exists('g:NERDTreeLimitedSyntax') && !exists('g:NERDTreeSyntaxDisableDefaultE
 endif
 
 let s:characters = '[ a-zA-Z0-9_\#\-\+\*\%\!\~\(\)\{\}\&\.\$\@]'
-" substitute will 'eat' single backlashes on the string
+" substitute will 'eliminate' single backlashes on the string
 let s:chars_double_lashes = substitute(s:characters, '\\', '\\\\', 'g')
 
 " Extension colors
-
 if !exists('g:NERDTreeExtensionHighlightColor')
   let g:NERDTreeExtensionHighlightColor = {}
 endif
@@ -522,7 +521,6 @@ for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
 endfor
 
 "Pattern Matches
-
 if !exists('g:NERDTreePatternMatchHighlightColor')
   let g:NERDTreePatternMatchHighlightColor = {}
 endif
@@ -543,7 +541,6 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
 
   exec 'syn match '.label_identifier.' "\v\c'.sub_regexp.'" containedin=NERDTreeFile'
   exec 'syn match '.label_identifier.' "\v\c'.exec_sub_regexp.'" containedin=NERDTreeExecFile'
-  " TODO: handle executable file
   exec 'hi def link '.label_identifier.' NERDTreeFile'
 
   if exists("g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols['".key."']")
