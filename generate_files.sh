@@ -157,6 +157,7 @@ test_files=(
   \ '-.hyphen-file.js'
   \ '**%%44#@@!!@##$!!#!.error.js'
   \ 'file with spaces.js'
+  \ 'without_extension'
 )
 
 pattern_matches=(
@@ -174,10 +175,12 @@ mkdir -p './files/normal/extensions'
 mkdir -p './files/normal/exact_matches'
 mkdir -p './files/normal/pattern_matches'
 mkdir -p './files/normal/test_files'
+mkdir -p './files/normal/without_extension'
 mkdir -p './files/executable/extensions'
 mkdir -p './files/executable/exact_matches'
 mkdir -p './files/executable/pattern_matches'
 mkdir -p './files/executable/test_files'
+mkdir -p './files/executable/without_extension'
 
 for exact_match_folder in "${exact_match_folders[@]}"
 do
@@ -212,3 +215,10 @@ do
   touch "files/executable/pattern_matches/$pattern_match"
 done
 chmod -R +x "files/executable/pattern_matches/"
+
+for i in {1..50}
+do
+  touch "files/normal/without_extension/file$i"
+  touch "files/executable/without_extension/file$i"
+done
+chmod -R +x "files/executable/without_extension/"
