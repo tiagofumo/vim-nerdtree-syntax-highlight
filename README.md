@@ -1,8 +1,6 @@
 # vim-nerdtree-syntax-highlight
 This adds syntax for nerdtree on most common file extensions. Whether you want to easily see what is going on in a new project, trying to learn a new framework with a different folder structure, or just trying to make your NERDTree look better, this plugin can help you. This is intended to be used with [vim-devicons](https://github.com/ryanoasis/vim-devicons) to add color to icons or entire labels, but will work without it. It is possible to disable highlight, but the syntax will still be available if you want to make something specific with it. The file icons are linked to their labels which are linked to NERDTreeFile, so it will not break anything.
 
-**Warning**: This is sort of a hack and has some limitations.
-
 File syntax will follow this pattern:
 
 | @ | label  | icon |
@@ -10,6 +8,8 @@ File syntax will follow this pattern:
 |file extensions|nerdtreeFileExtensionLabel_#{extension}|nerdtreeFileExtensionIcon_#{extension}|
 |exact match|nerdtreeExactMatchLabel_#{name}|nerdtreeExactMatchIcon_#{name} |
 |pattern match |nerdtreePatternMatchLabel_#{pattern_letters}|nerdtreePatternMatchIcon_#{pattern_letters}|
+|unmatched folders|WebDevIconsDefaultFolderSymbol|set with config from [vim-devicons](https://github.com/ryanoasis/vim-devicons)
+|unmatched files|WebDevIconsDefaultFileSymbol|set with config from [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
 ### Screenshots:
 ![](/screenshots/allfiles.png "All files generated with the generateFiles<span></span>.sh script")
@@ -24,6 +24,11 @@ NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 ### Dependencies
 This plugin is intended to be used with [vim-devicons](https://github.com/ryanoasis/vim-devicons) and to use it you will need to add a new font from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts) to your machine so you can see the icons when using vim.
 ### Configuration
+* Disable unmatched folder and file icons having the same color as their labels (normally green and white), if set by this plugin (it could have been set by some other plugin that you are using).
+```vim
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+```
 * Disable Highlighting
 ```vim
 let g:NERDTreeDisableFileExtensionHighlight = 1
@@ -71,7 +76,11 @@ let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the c
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
+let g:WebDevIconsDefaultFolderSymbolColor = s:beige " sets the color for folders that did not match any rule
+let g:WebDevIconsDefaultFileSymbolColor = s:blue " sets the color for files that did not match any rule
 ```
+
 * Disable Highlight for specific file extension
 ```vim
 " If you have vim-devicons you can customize your icons for each file type.
