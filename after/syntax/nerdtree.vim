@@ -558,3 +558,29 @@ for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
   endif
 endfor
 
+let icon_closed = g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol
+let icon_open = g:DevIconsDefaultFolderOpenSymbol
+let identifier = 'WebDevIconsDefaultFolderSymbol'
+exec 'silent syn match '.identifier.' "\c['.icon_closed.']\ze.*/" containedin=NERDTreeFlags'
+exec 'silent syn match '.identifier.' "\c['.icon_open.']\ze.*/" containedin=NERDTreeFlags'
+if !exists('g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir')
+  exec 'hi def link '.identifier.' NERDTreeDir'
+else
+  " exec 'hi def link '.identifier.' NERDTreeFlags'
+  let NERDTreeFlagsTrans = synIDattr(synIDtrans(hlID('NERDTreeFlags')), 'name')
+  exec 'hi def link '.identifier.' '.NERDTreeFlagsTrans
+endif
+if exists('g:WebDevIconsDefaultFolderSymbolColor')
+  call s:X(identifier, g:WebDevIconsDefaultFolderSymbolColor, '', '')
+endif
+
+let icon = g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol
+let identifier = 'WebDevIconsDefaultFileSymbol '
+exec 'silent syn match '.identifier.' "\v\c\zs['.icon.']\ze.*" containedin=NERDTreeFlags'
+if !exists('g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile')
+  exec 'hi def link '.identifier.' NERDTreeFile'
+  exec 'hi! def link NERDTreeFlags NERDTreeFile'
+endif
+if exists('g:WebDevIconsDefaultFileSymbolColor')
+  call s:X(identifier, g:WebDevIconsDefaultFileSymbolColor, '', '')
+endif
