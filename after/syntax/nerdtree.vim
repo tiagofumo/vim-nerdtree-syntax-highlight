@@ -580,6 +580,8 @@ exec 'silent syn match '.identifier.' "\v\c\zs['.icon.']\ze.*" containedin=NERDT
 if !exists('g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile')
   exec 'hi def link '.identifier.' NERDTreeFile'
   exec 'hi! def link NERDTreeFlags NERDTreeFile'
+else
+  exec 'hi def link '.identifier.' NERDTreeFlags'
 endif
 if exists('g:WebDevIconsDefaultFileSymbolColor')
   call s:X(identifier, g:WebDevIconsDefaultFileSymbolColor, '', '')
