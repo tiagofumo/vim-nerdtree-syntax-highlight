@@ -562,17 +562,23 @@ if exists("g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol")
   let icon_closed = g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol
   let icon_open = g:DevIconsDefaultFolderOpenSymbol
   let identifier = 'WebDevIconsDefaultFolderSymbol'
+  let open_identifier = 'WebDevIconsDefaultOpenFolderSymbol'
   exec 'silent syn match '.identifier.' "\c['.icon_closed.']\ze.*/" containedin=NERDTreeFlags'
-  exec 'silent syn match '.identifier.' "\c['.icon_open.']\ze.*/" containedin=NERDTreeFlags'
+  exec 'silent syn match '.open_identifier.' "\c['.icon_open.']\ze.*/" containedin=NERDTreeFlags'
   if !exists('g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir')
     exec 'hi def link '.identifier.' NERDTreeDir'
+    exec 'hi def link '.open_identifier.' NERDTreeDir'
   else
     " exec 'hi def link '.identifier.' NERDTreeFlags'
     let NERDTreeFlagsTrans = synIDattr(synIDtrans(hlID('NERDTreeFlags')), 'name')
     exec 'hi def link '.identifier.' '.NERDTreeFlagsTrans
+    exec 'hi def link '.open_identifier.' '.NERDTreeFlagsTrans
   endif
   if exists('g:WebDevIconsDefaultFolderSymbolColor')
     call s:X(identifier, g:WebDevIconsDefaultFolderSymbolColor, '', '')
+  endif
+  if exists('g:WebDevIconsDefaultOpenFolderSymbolColor')
+    call s:X(open_identifier, g:WebDevIconsDefaultOpenFolderSymbolColor, '', '')
   endif
 endif
 
