@@ -270,7 +270,6 @@ let s:file_extension_colors = {
   \ 'ico'      : s:aqua,
   \ 'twig'     : s:green,
   \ 'cpp'      : s:blue,
-  \ 'c++'      : s:blue,
   \ 'cxx'      : s:blue,
   \ 'cc'       : s:blue,
   \ 'cp'       : s:blue,
@@ -312,7 +311,6 @@ let s:file_extension_colors = {
   \ 'pm'       : s:blue,
   \ 't'        : s:blue,
   \ 'rss'      : s:darkOrange,
-  \ 'f#'       : s:darkBlue,
   \ 'fsscript' : s:blue,
   \ 'fsx'      : s:blue,
   \ 'fs'       : s:blue,
@@ -352,7 +350,6 @@ let s:file_node_exact_matches = {
   \ '.ds_store'                        : s:white,
   \ '.gitconfig'                       : s:white,
   \ '.gitignore'                       : s:white,
-  \ '.gitlab-ci.yml'                   : s:orange,
   \ '.bashrc'                          : s:white,
   \ '.zshrc'                           : s:white,
   \ '.vimrc'                           : s:green,
@@ -368,7 +365,6 @@ let s:file_node_exact_matches = {
   \ 'typescript.tsx'                   : s:blue,
   \ 'procfile'                         : s:purple,
   \ 'dockerfile'                       : s:blue,
-  \ 'docker-compose.yml'               : s:blue,
   \ 'makefile'                         : s:white,
   \ 'cmakelists.txt'                   : s:white
 \}
