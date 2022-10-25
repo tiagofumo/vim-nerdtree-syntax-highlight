@@ -209,11 +209,7 @@ endfun
 
 " Escape a string so that it may be used as a group name.
 fun! s:escape(str)
-  let l:escaped = a:str
-  let l:escaped = substitute(l:escaped, "+", ".PLUS.", "g")
-  let l:escaped = substitute(l:escaped, "-", ".MINUS.", "g")
-  let l:escaped = substitute(l:escaped, "#", ".HASH.", "g")
-  return l:escaped
+  return substitute(a:str, '[a-zA-Z0-9_.@]\@!.', '_', 'g')
 endfun
 
 "the original values would be 24 bit color but apparently that is not possible
