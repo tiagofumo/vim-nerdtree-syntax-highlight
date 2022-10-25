@@ -207,6 +207,15 @@ fun! s:X(group, fg, bg, attr)
   endif
 endfun
 
+" Escape a string so that it may be used as a group name.
+fun! s:escape(str)
+  let l:escaped = a:str
+  let l:escaped = substitute(l:escaped, "+", ".PLUS.", "g")
+  let l:escaped = substitute(l:escaped, "-", ".MINUS.", "g")
+  let l:escaped = substitute(l:escaped, "#", ".HASH.", "g")
+  return l:escaped
+endfun
+
 "the original values would be 24 bit color but apparently that is not possible
 let s:brown = "905532"
 let s:aqua =  "3AFFDB"
@@ -451,8 +460,9 @@ for [key, val] in items(s:file_extension_colors)
 endfor
 
 for [key, val] in items(g:NERDTreeExtensionHighlightColor)
-  let label_identifier = 'nerdtreeFileExtensionLabel_'.key
-  let icon_identifier = 'nerdtreeFileExtensionIcon_'.key
+  let escaped = s:escape(key)
+  let label_identifier = 'nerdtreeFileExtensionLabel_'.escaped
+  let icon_identifier = 'nerdtreeFileExtensionIcon_'.escaped
   let regexp = '\v'.s:characters.'+\.'.substitute(key, '\W', '\\\0', 'g')
 
   exec 'silent syn match '.label_identifier.' "'.regexp.'$" containedin=NERDTreeFile'
@@ -488,10 +498,11 @@ for [key, val] in items(s:file_node_exact_matches)
 endfor
 
 for [key, val] in items(g:NERDTreeExactMatchHighlightColor)
-  let label_identifier = 'nerdtreeExactMatchLabel_'.key
-  let icon_identifier = 'nerdtreeExactMatchIcon_'.key
-  let folder_identifier = 'nerdtreeExactMatchFolder_'.key
-  let folder_icon_identifier = 'nerdtreeExactMatchFolderIcon_'.key
+  let escaped = s:escape(key)
+  let label_identifier = 'nerdtreeExactMatchLabel_'.escaped
+  let icon_identifier = 'nerdtreeExactMatchIcon_'.escaped
+  let folder_identifier = 'nerdtreeExactMatchFolder_'.escaped
+  let folder_icon_identifier = 'nerdtreeExactMatchFolderIcon_'.escaped
   exec 'silent syn match '.label_identifier.' "\c'.key.'$" containedin=NERDTreeFile'
   exec 'silent syn match '.label_identifier.' "\c'.key.'\W*\*$" containedin=NERDTreeExecFile'
   exec 'hi def link '.label_identifier.' NERDTreeFile'
@@ -533,7 +544,8 @@ for [key, val] in items(s:file_node_pattern_matches)
 endfor
 
 for [key, val] in items(g:NERDTreePatternMatchHighlightColor)
-  let suffix = substitute(key, '\W', '', 'g')
+  let escaped = s:escape(key)
+  let suffix = substitute(escaped, '\W', '', 'g')
   let label_identifier = 'nerdtreePatternMatchLabel_'.suffix
   let icon_identifier = 'nerdtreePatternMatchIcon_'.suffix
   let sub_regexp = substitute(key, '\v\\@<!\.', s:chars_double_lashes, 'g')
